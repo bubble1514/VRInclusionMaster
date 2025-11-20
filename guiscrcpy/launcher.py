@@ -48,7 +48,7 @@ from qtpy.QtWidgets import QMainWindow, QListWidgetItem, QMenu
 from qtpy.QtWidgets import QMessageBox
 
 from .lib.bridge.audio.sndcpy import SndcpyBridge
-from .lib.bridge.audio.usbaudio import USBAudioBridge
+##from .lib.bridge.audio.usbaudio import USBAudioBridge
 from .lib.config import InterfaceConfig
 from .lib.utils import format_colors as fc
 from .constants import FONTS
@@ -149,10 +149,10 @@ class InterfaceGuiscrcpy(QMainWindow, Ui_MainWindow):
             self.check_side_panel.setChecked(True)
         else:
             self.check_side_panel.setChecked(False)
-        if config["panels"].get("bottom"):
-            self.check_bottom_panel.setChecked(True)
-        else:
-            self.check_bottom_panel.setChecked(False)
+        ##if config["panels"].get("bottom"):
+            ##self.check_bottom_panel.setChecked(True)
+        ##else:
+            ##self.check_bottom_panel.setChecked(False)
 
         # dimension
         if config["dimension"] is not None:
@@ -193,11 +193,11 @@ class InterfaceGuiscrcpy(QMainWindow, Ui_MainWindow):
         self.dimensionText.setText("DEFAULT")
         config["bitrate"] = int(self.dial.value())
         self.bitrateText.setText(str(config["bitrate"]) + "KB/s")
-        self.pushButton.setText("RESET")
-        self.pushButton.clicked.connect(self.reset)
-        self.abtgit.clicked.connect(self.launch_web_github)
-        self.usbaud.clicked.connect(self.launch_usb_audio)
-        self.initmapnow.clicked.connect(self.bootstrap_mapper)
+        ##self.pushButton.setText("ПЕРЕЗАПУСК")
+        ##self.pushButton.clicked.connect(self.reset)
+        ##self.abtgit.clicked.connect(self.launch_web_github)
+        ##self.usbaud.clicked.connect(self.launch_usb_audio)
+        ##self.initmapnow.clicked.connect(self.bootstrap_mapper)
         self.network_button.clicked.connect(self.network_mgr)
         self.settings_button.clicked.connect(self.settings_mgr)
         # self.devices_view.itemChanged.connect(self.update_rotation_combo_cb)
@@ -345,12 +345,13 @@ class InterfaceGuiscrcpy(QMainWindow, Ui_MainWindow):
     def launch_web_github():
         webbrowser.open("https://github.com/srevinsaju/guiscrcpy")
 
+    """
     def about(self):
-        """
+        
         Reset message box is based on aboutWindow object
         For some reason, I did not get time to fix that
         :return:
-        """
+        
         about_message_box = QMessageBox().window()
         about_message_box.about(
             self.pushButton,
@@ -360,12 +361,13 @@ class InterfaceGuiscrcpy(QMainWindow, Ui_MainWindow):
         )
         about_message_box.addButton("OK", about_message_box.hide)  # noqa:
         about_message_box.show()
-
+    """
+    """
     def reset(self):
-        """
+        
         Remove configuration files; Reset the mapper and guiscrcpy.json
         :return:
-        """
+        
         self.config_manager.reset_config()
         self.logger.info("Configuration file removed and reset")
         message_box = QMessageBox().window()
@@ -378,7 +380,7 @@ class InterfaceGuiscrcpy(QMainWindow, Ui_MainWindow):
         QMessageBox.ButtonRole()
         message_box.addButton("OK", self.quit_window)  # noqa:
         message_box.show()
-
+    """
     def quit_window(self):
         """
         A method to quit the main window
@@ -1082,6 +1084,7 @@ class InterfaceGuiscrcpy(QMainWindow, Ui_MainWindow):
 
         # ====================================================================
         # 13: Init bottom_panel if necessary
+        """
         if self.check_bottom_panel.isChecked():
             self.config["panels"]["bottom"] = True
             panel_instance = Panel(
@@ -1103,7 +1106,8 @@ class InterfaceGuiscrcpy(QMainWindow, Ui_MainWindow):
         else:
             self.config["panels"]["bottom"] = False
         progress = self.progress(progress)
-
+        """
+        
         # ====================================================================
         # 14: Init swipe panel if necessary
         if self.check_swipe_panel.isChecked():
