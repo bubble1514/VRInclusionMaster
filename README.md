@@ -9,8 +9,7 @@
 </p>
 
 
-> [!WARNING]  
-> This repository is archived. Please see [#348](https://github.com/srevinsaju/guiscrcpy/348) for more information.
+
 
 <div align="center">
 
